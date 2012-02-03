@@ -204,4 +204,17 @@ public abstract class Interface{
         }
         return ret;
     }
+
+    /**
+     * Retrieves the Statement object associated with the current
+     * Connection. 
+     *
+     * This is used to execute SQL statements on the connected
+     * database.
+     *
+     * @return a Statement object with a connection to a database
+     */
+    protected Statement getStatement() {
+        return st;
+    }
 }
