@@ -1,5 +1,3 @@
-package code;
-
 public class Test extends Interface{
 
     public static void main(String[] args){
