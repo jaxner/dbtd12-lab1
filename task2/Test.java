@@ -7,7 +7,7 @@ public class Test extends Interface{
     }
 
     public void run(){
-    	select();
+        select();
     }
 
     @Override
