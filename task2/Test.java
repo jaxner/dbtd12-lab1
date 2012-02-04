@@ -4,10 +4,6 @@ public class Test extends Interface{
         new Test().run();
     }
 
-    public void run(){
-        select();
-    }
-
     @Override
     public void insert(){
 
