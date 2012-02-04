@@ -142,36 +142,6 @@ public abstract class Interface{
     abstract void update();
 
     /**
-     * format is kin to printf of C.
-     * format is limited to only formatting Strings into a String.
-     * The first occurrence of '%s' in the format string will be replaced
-     * by the first element in params. The second occurrence by the second element and so forth.
-     * If there are more format strings than elements in args, the application will crash.
-     * If there are more elements than there are format strings, the redundant elements will be ignored.
-     * Students are not required to study this code.
-     * @param format, the format string. EXAMPLE: "I like %s!"
-     * @param params, the parameters. EXAMPLE: {"pies"}
-     * @return the formatted string. EXAMPLE "I like pies!"
-     */
-    protected String format(String format, String[] params){
-        StringBuilder sb = new StringBuilder();
-        int cur = 0;
-        char[] c = format.toCharArray();
-        try{
-            for (int i = 0; i < c.length; i++) {
-                if(c[i++] == '%'){
-                    sb.append(params[cur++]);
-                }
-                else
-                    sb.append(c[i]);
-            }
-        }catch(IndexOutOfBoundsException e){
-            System.err.println("Not enough params supplied to format string. Element " + (cur+1) + " has no corresponding element");
-            e.printStackTrace();
-        }
-        return sb.toString().trim();
-    }
-    /**
      * getStringPrompt prints prompt to stdout without newline and returns the next line of input to stdin.
      * @param prompt. EXAMPLE: "What is your name?"
      * @return EXAMPLE: "Tokko"
