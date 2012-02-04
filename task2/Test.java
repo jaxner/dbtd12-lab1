@@ -1,11 +1,11 @@
-public class Test extends Interface{
+public class Test extends Interface {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new Test().run();
     }
 
     @Override
-    public void insert(){
+    public void insert() {
         String table_name = getStringPrompt("Which table?");
         String columns = getStringPrompt("Which columns?");
         String values = getStringPrompt("Which values?");
@@ -23,12 +23,12 @@ public class Test extends Interface{
     }
 
     @Override
-    public void update(){
+    public void update() {
 
     }
 
     @Override
-    public void remove(){
+    public void remove() {
 
     }
     
