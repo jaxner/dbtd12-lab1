@@ -1,24 +1,21 @@
 import java.sql.*;
 
 class Database {
-    private Statement statement;
     private List<Table> tables;
 
-    Database (Statement st) {
-	statement = st;
-	initializeTables();
+    Database (Connection conn) {
+	initializeTables(conn);
     }
 
-    private void initializeTables() {
+    private void initializeTables(Connection conn) {
 	List<Table> allTables = new LinkedList<Table>();
 
-	DatabaseMetaData md = statement.getConnection().getMetaData();
-	ResultSet        rs = md.getTables(null, null, "%", null);
+	ResultSet rs = conn.getMetaData().getTables(null, null, "%", null);
 
 	while (rs.next()) {
 	    // The name is in the third column...
 	    String name = rs.getString(3);
-	    allTables.add(new Table(name, statement));
+	    allTables.add(new Table(name, conn));
 	}
 
 	tables = allTables;
