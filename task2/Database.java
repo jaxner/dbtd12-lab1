@@ -2,7 +2,7 @@ import java.sql.*;
 
 class Database {
     private Statement statement;
-    List<Table> tables;
+    private List<Table> tables;
 
     Database (Statement st) {
 	statement = st;
