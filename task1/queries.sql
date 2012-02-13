@@ -9,12 +9,13 @@ from books natural join authors
 where first_name = 'Paulette' and last_name = 'Bourgeois';
 
 -- 3.
-select last_name || ', ' || first_name as full_name from customers 
+select last_name || ', ' || first_name
+from customers 
 natural join shipments
 natural join editions
 natural join books
 natural join subjects
-where subject='Horror';
+where subject = 'Horror';
 
 -- 4.
 select title from books
