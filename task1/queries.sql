@@ -18,10 +18,18 @@ natural join subjects
 where subject = 'Horror';
 
 -- 4.
-select title from books
+create view title_stock as
+select title, sum(stock) as stock_total
+from books
 natural join editions
 natural join stock
-where stock=(select max(stock) from stock);
+group by title;
+
+select title
+from title_stock
+where stock_total = (select max(stock_total) from title_stock);
+
+drop view title_stock;
 
 -- 5.
 select sum(retail_price) from shipments
