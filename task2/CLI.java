@@ -13,7 +13,7 @@ public class CLI extends Interface {
 
         try {
             db.insert(table_name,columns,values);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Invalid syntax!");
             System.out.println(e);
         }
@@ -40,7 +40,7 @@ public class CLI extends Interface {
 
         try {
             db.insert(table_name,columns,values,condition);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Invalid syntax!");
             System.out.println(e);
         }
@@ -54,7 +54,7 @@ public class CLI extends Interface {
 
         try {
             db.remove(table_name,condition);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Invalid syntax!");
             System.out.println(e);
         }
@@ -69,7 +69,7 @@ public class CLI extends Interface {
 
         try {
             r=db.select(table_name,columns,condition);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Invalid syntax!");
             System.out.println(e);
 	    return;
@@ -88,12 +88,12 @@ public class CLI extends Interface {
 				System.out.print(",\t");
 			    System.out.print(rs.getString(i));
 			    //If there are no more strings, break
-			}catch(SQLException c){break;}
+			}catch(Exception c){break;}
 		    }
 		    System.out.println();
 		}
 	    }
-	} catch(SQLException c) {
+	} catch(Exception c) {
 	    System.out.println("Ni borde inte se detta.");
 	}
     }
