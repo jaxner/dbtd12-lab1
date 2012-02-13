@@ -6,6 +6,22 @@ class Database {
 
     Database (Statement st) {
 	statement = st;
+	initializeTables();
+    }
+
+    private void initializeTables() {
+	List<Table> allTables = new LinkedList<Table>();
+
+	DatabaseMetaData md = statement.getConnection().getMetaData();
+	ResultSet        rs = md.getTables(null, null, "%", null);
+
+	while (rs.next()) {
+	    // The name is in the third column...
+	    String name = rs.getString(3);
+	    allTables.add(new Table(name, statement));
+	}
+
+	tables = allTables;
     }
     
     public void insert(String table, List<String> columns, List<String> values) {
