@@ -38,8 +38,8 @@ class Database {
 	getTable(tableName).insert(columnNames, values);
     }
 
-    public void delete(String table, String condition) {
-	// to-do
+    public void delete(String tableName, String condition) throws Exception {
+	getTable(tableName).delete(tableName, condition);
     }
     
     public void update(String table, List<String> columns, List<String> values, String condition) {
