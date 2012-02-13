@@ -46,7 +46,12 @@ class Database {
 	getTable(tableName).update(columnNames, values, condition);
     }
 
-    public ResultSet select(List<String> tables, List<String> columns, String condition) {
-	// to-do
+    public ResultSet select(List<String> tableNames, List<String> columnNames, String condition) throws Exception {
+	// Check that all names in tableNames are valid
+	for (String name : tableNames) {
+	    getTable(name);
+	}
+
+	new Table(tableNames, statement).select(columnNames, condition);
     }
 }
