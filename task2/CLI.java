@@ -2,7 +2,8 @@ public class CLI extends Interface {
     private Database db;
 
     public static void main(String[] args) {
-        new Test().run();
+	db = new Database(getConnection());
+        new CLI().run();
     }
 
     @Override
