@@ -23,7 +23,7 @@ public class CLI extends Interface {
     @Override
     public void update() {
         String table_name = getStringPrompt("Which table?");
-        List<String> set = getStringPrompt("Which set instruktion?").split(" *, *");
+        List<String> set = getStringPrompt("Which set instruction?").split(" *, *");
 	String condition = getStringPrompt("Which condition?");
 	List<String> columns = new ArrayList();
 	List<String> valuess = new ArrayList();
