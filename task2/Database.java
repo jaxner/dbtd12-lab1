@@ -52,6 +52,6 @@ class Database {
 	    getTable(name);
 	}
 
-	new Table(tableNames, statement).select(columnNames, condition);
+	return new Table(tableNames, statement).select(columnNames, condition);
     }
 }
