@@ -175,15 +175,14 @@ public abstract class Interface{
     }
 
     /**
-     * Retrieves the Statement object associated with the current
-     * Connection. 
+     * Retrieves the Connection object that has a connection to
+     * the database.
      *
-     * This is used to execute SQL statements on the connected
-     * database.
+     * This is used to communicate with the database.
      *
-     * @return a Statement object with a connection to a database
+     * @return a Connection object connected to a database.
      */
-    protected Statement getStatement() {
-        return st;
+    protected Statement getConnection() {
+        return conn;
     }
 }
