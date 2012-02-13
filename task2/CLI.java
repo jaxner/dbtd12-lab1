@@ -1,4 +1,5 @@
-public class Test extends Interface {
+public class CLI extends Interface {
+    private Database db;
 
     public static void main(String[] args) {
         new Test().run();
@@ -7,15 +8,11 @@ public class Test extends Interface {
     @Override
     public void insert() {
         String table_name = getStringPrompt("Which table?");
-        String columns = getStringPrompt("Which columns?");
-        String values = getStringPrompt("Which values?");
-        String query = "INSERT INTO "+ table_name
-            + " (" + columns + ") VALUES (" + values + ");";
-
-        System.out.println("Executing query: " + query);
+        List<String> columns = getStringPrompt("Which columns?").split(" *, *");
+        List<String> values = getStringPrompt("Which values?").split(" *, *");
 
         try {
-            getStatement().executeUpdate(query);
+            db.insert(table_name,columns,values);
         } catch (SQLException e) {
             System.out.println("Invalid syntax!");
             System.out.println(e);
@@ -24,21 +21,81 @@ public class Test extends Interface {
 
     @Override
     public void update() {
+        String table_name = getStringPrompt("Which table?");
+        List<String> set = getStringPrompt("Which set instruktion?").split(" *, *");
+	String condition = getStringPrompt("Which condition?");
+	List<String> columns = new ArrayList();
+	List<String> valuess = new ArrayList();
+	
 
+	for (String x:set){
+	    List<String> tuple=x.split(" *= *");
+	    if (tuple.size()!=2){
+		System.out.println("Invalid syntax!");
+		return;
+	    }
+	    columns.add(tuple.get(0));
+	    values.add(tuple.get(1));
+	}
+
+        try {
+            db.insert(table_name,columns,values,condition);
+        } catch (SQLException e) {
+            System.out.println("Invalid syntax!");
+            System.out.println(e);
+        }
     }
 
     @Override
     public void remove() {
 
+        String table_name = getStringPrompt("Which table?");
+	String condition = getStringPrompt("Which condition?");
+
+        try {
+            db.remove(table_name,condition);
+        } catch (SQLException e) {
+            System.out.println("Invalid syntax!");
+            System.out.println(e);
+        }
     }
     
     @Override
     public void select() {
-        /*
-         * TODO:
-         * Modify the select version in Interface.java so that it uses
-         * transactions
-         */
-        super.select();
+        String table_name = getStringPrompt("Which table?");
+        List<String> columns = getStringPrompt("Which columns?").split(" *, *");
+	String condition = getStringPrompt("Which condition?");
+	ResultSet r;
+
+        try {
+            r=db.select(table_name,columns,condition);
+        } catch (SQLException e) {
+            System.out.println("Invalid syntax!");
+            System.out.println(e);
+	    return;
+        }
+	
+	printResult(r);
     }
+
+    public static void printResult(ResultSet rs) {
+	try {
+	    if(rs != null){
+		while(rs.next()){
+		    for (int i = 1; true; i++) {
+			try{
+			    if(i > 1)
+				System.out.print(",\t");
+			    System.out.print(rs.getString(i));
+			    //If there are no more strings, break
+			}catch(SQLException c){break;}
+		    }
+		    System.out.println();
+		}
+	    }
+	} catch(SQLException c) {
+	    System.out.println("Ni borde inte se detta.");
+	}
+    }
+
 }
