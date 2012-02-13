@@ -23,11 +23,19 @@ class Database {
 
 	tables = allTables;
     }
-    
+
+    private Table getTable(String name) throws Exception {
+	for (Table t : tables) {
+	    if (t.getName().equals(name))
+		return t;
+	}
+
+	// If no table was found
+	throw new Exception("There's no table called " + name + "!");
+    }
+ 
     public void insert(String table, List<String> columns, List<String> values) {
-	if tableExists(table) {
-		// empty	
-	    }
+	// to-do
     }
 
     public void delete(String table, String condition) {
@@ -41,11 +49,4 @@ class Database {
     public ResultSet select(List<String> tables, List<String> columns, String condition) {
 	// to-do
     }
-
-    // -------------------- PRIVATE --------------------
-
-    private boolean tableExists(String tableName) {
-	// to-do
-    }
-
 }
