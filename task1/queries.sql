@@ -1,7 +1,7 @@
 -- 1.
-select last_name || ', ' || first_name as full_name from authors 
-natural join books 
-where title='The Shining';
+select last_name || ', ' || first_name
+from authors natural join books
+where title = 'The Shining';
 
 -- 2.
 select title from books
