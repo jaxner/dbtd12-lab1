@@ -182,7 +182,7 @@ public abstract class Interface{
      *
      * @return a Connection object connected to a database.
      */
-    protected Statement getConnection() {
+    protected Connection getConnection() {
         return conn;
     }
 }
