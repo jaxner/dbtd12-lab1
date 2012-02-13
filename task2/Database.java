@@ -34,8 +34,8 @@ class Database {
 	throw new Exception("There's no table called " + name + "!");
     }
  
-    public void insert(String table, List<String> columns, List<String> values) {
-	// to-do
+    public void insert(String tableName, List<String> columnNames, List<String> values) throws Exception {
+	getTable(tableName).insert(columnNames, values);
     }
 
     public void delete(String table, String condition) {
