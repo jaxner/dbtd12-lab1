@@ -4,9 +4,9 @@ from authors natural join books
 where title = 'The Shining';
 
 -- 2.
-select title from books
-natural join authors
-where first_name='Paulette' and last_name='Bourgeois';
+select title
+from books natural join authors
+where first_name = 'Paulette' and last_name = 'Bourgeois';
 
 -- 3.
 select last_name || ', ' || first_name as full_name from customers 
