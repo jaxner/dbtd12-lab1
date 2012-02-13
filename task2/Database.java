@@ -42,8 +42,8 @@ class Database {
 	getTable(tableName).delete(tableName, condition);
     }
     
-    public void update(String table, List<String> columns, List<String> values, String condition) {
-	// to-do
+    public void update(String tableName, List<String> columnNames, List<String> values, String condition) throws Exception {
+	getTable(tableName).update(columnNames, values, condition);
     }
 
     public ResultSet select(List<String> tables, List<String> columns, String condition) {
